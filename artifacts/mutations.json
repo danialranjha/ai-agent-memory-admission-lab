@@ -1,0 +1,14 @@
+[
+  {
+    "mutation": "restore_stop",
+    "tests": 12,
+    "exit_code": 1,
+    "failures": 6
+  },
+  {
+    "mutation": "accept_overflow",
+    "tests": 12,
+    "exit_code": 1,
+    "failures": 8
+  }
+]

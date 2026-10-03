@@ -1,0 +1,21 @@
+{
+  "repository": "https://github.com/one2seven-oss/vivvy",
+  "commit": "b5679309d4e072d34d7ac1456426c51361970002",
+  "path": "ltm/src/lib.rs",
+  "git_blob": "7d3e710c72713b492d5ab5a4c4412090d33aa3e1",
+  "full_source_sha256": "713702383b615d248dc79694649c52394c6b19cef0812a1bf2b90ed3189894f2",
+  "body_lines": [
+    492,
+    531
+  ],
+  "estimator_lines": [
+    562,
+    567
+  ],
+  "files": {
+    "formatter_body.rs": "5c2511b91d6e0611d0b2609f44c92ecc7c5a3d41ff988768db456e6d0f9735e8",
+    "estimate.rs": "fe083bc1a849aca10aec33349a5aca0518effbb4f73b1ad9311b11029d2710f3",
+    "LICENSE": "7311e2c923ac261367bc068bcb685ff516764578d2e62be2355fe0d7c4531183"
+  },
+  "adaptation": "Exact formatter body after recall and option validation, plus exact estimator. Minimal supplied Response/Options types. Proposed intervention changes only budget-branch break to continue. No retrieval/storage/model executed. Options use valid positive budgets; records supplied as fixed Fact kind with score0.5. License retained; research use only."
+}

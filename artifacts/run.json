@@ -1,0 +1,641 @@
+{
+  "scope": "Pinned formatter slice with supplied recall records. No storage, retrieval, model, network or real secrets.",
+  "source_commit": "b5679309d4e072d34d7ac1456426c51361970002",
+  "budget_unit": "ceil(UTF-8 bytes/4), unchanged upstream estimate; not actual model tokens",
+  "fixture_count": 15,
+  "row_count": 30,
+  "changed_pairs": 6,
+  "fixtures": [
+    {
+      "name": "oversized_first",
+      "records": [
+        {
+          "id": "large",
+          "content": "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL"
+        },
+        {
+          "id": "a",
+          "content": "KEEP-A"
+        },
+        {
+          "id": "b",
+          "content": "KEEP-B"
+        }
+      ],
+      "budget": 8,
+      "header": null,
+      "footer": null,
+      "template": "{content}"
+    },
+    {
+      "name": "oversized_middle",
+      "records": [
+        {
+          "id": "a",
+          "content": "KEEP-A"
+        },
+        {
+          "id": "large",
+          "content": "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL"
+        },
+        {
+          "id": "b",
+          "content": "KEEP-B"
+        }
+      ],
+      "budget": 8,
+      "header": null,
+      "footer": null,
+      "template": "{content}"
+    },
+    {
+      "name": "oversized_last",
+      "records": [
+        {
+          "id": "a",
+          "content": "KEEP-A"
+        },
+        {
+          "id": "b",
+          "content": "KEEP-B"
+        },
+        {
+          "id": "large",
+          "content": "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL"
+        }
+      ],
+      "budget": 8,
+      "header": null,
+      "footer": null,
+      "template": "{content}"
+    },
+    {
+      "name": "ordinary_twin",
+      "records": [
+        {
+          "id": "a",
+          "content": "KEEP-A"
+        },
+        {
+          "id": "b",
+          "content": "KEEP-B"
+        }
+      ],
+      "budget": 8,
+      "header": null,
+      "footer": null,
+      "template": "{content}"
+    },
+    {
+      "name": "exact_fill",
+      "records": [
+        {
+          "id": "a",
+          "content": "KEEP-A"
+        },
+        {
+          "id": "b",
+          "content": "KEEP-B"
+        }
+      ],
+      "budget": 4,
+      "header": null,
+      "footer": null,
+      "template": "{content}"
+    },
+    {
+      "name": "no_remaining_room",
+      "records": [
+        {
+          "id": "a",
+          "content": "KEEP-A"
+        },
+        {
+          "id": "b",
+          "content": "KEEP-B"
+        }
+      ],
+      "budget": 2,
+      "header": null,
+      "footer": null,
+      "template": "{content}"
+    },
+    {
+      "name": "all_oversized",
+      "records": [
+        {
+          "id": "large",
+          "content": "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL"
+        },
+        {
+          "id": "large2",
+          "content": "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
+        }
+      ],
+      "budget": 8,
+      "header": null,
+      "footer": null,
+      "template": "{content}"
+    },
+    {
+      "name": "empty",
+      "records": [],
+      "budget": 8,
+      "header": null,
+      "footer": null,
+      "template": "{content}"
+    },
+    {
+      "name": "header_consumes_room",
+      "records": [
+        {
+          "id": "large",
+          "content": "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL"
+        },
+        {
+          "id": "a",
+          "content": "KEEP-A"
+        },
+        {
+          "id": "b",
+          "content": "KEEP-B"
+        }
+      ],
+      "budget": 8,
+      "header": "HHHHHHHHHHHHHHHH",
+      "footer": null,
+      "template": "{content}"
+    },
+    {
+      "name": "footer_is_preserved",
+      "records": [
+        {
+          "id": "large",
+          "content": "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL"
+        },
+        {
+          "id": "a",
+          "content": "KEEP-A"
+        },
+        {
+          "id": "b",
+          "content": "KEEP-B"
+        }
+      ],
+      "budget": 8,
+      "header": null,
+      "footer": "END",
+      "template": "{content}"
+    },
+    {
+      "name": "oversized_header",
+      "records": [
+        {
+          "id": "a",
+          "content": "KEEP-A"
+        }
+      ],
+      "budget": 2,
+      "header": "HHHHHHHHHHHHHHHH",
+      "footer": null,
+      "template": "{content}"
+    },
+    {
+      "name": "newline_estimate_limit",
+      "records": [
+        {
+          "id": "a",
+          "content": "ABCD"
+        },
+        {
+          "id": "b",
+          "content": "EFGH"
+        }
+      ],
+      "budget": 2,
+      "header": null,
+      "footer": null,
+      "template": "{content}"
+    },
+    {
+      "name": "empty_record_limit",
+      "records": [
+        {
+          "id": "a",
+          "content": ""
+        },
+        {
+          "id": "b",
+          "content": ""
+        },
+        {
+          "id": "c",
+          "content": ""
+        },
+        {
+          "id": "d",
+          "content": ""
+        },
+        {
+          "id": "e",
+          "content": ""
+        }
+      ],
+      "budget": 1,
+      "header": null,
+      "footer": null,
+      "template": "{content}"
+    },
+    {
+      "name": "unicode_cost",
+      "records": [
+        {
+          "id": "large",
+          "content": "界界界界界界界界界界界界界界界界"
+        },
+        {
+          "id": "a",
+          "content": "猫"
+        },
+        {
+          "id": "b",
+          "content": "🙂"
+        }
+      ],
+      "budget": 4,
+      "header": null,
+      "footer": null,
+      "template": "{content}"
+    },
+    {
+      "name": "default_template",
+      "records": [
+        {
+          "id": "large",
+          "content": "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL"
+        },
+        {
+          "id": "a",
+          "content": "KEEP-A"
+        },
+        {
+          "id": "b",
+          "content": "KEEP-B"
+        }
+      ],
+      "budget": 24,
+      "header": "### Relevant Agent Memories:",
+      "footer": null,
+      "template": "- [{kind}] {content} (score: {score:.2})"
+    }
+  ],
+  "rows": [
+    {
+      "case": "oversized_first",
+      "method": "stop",
+      "output": "",
+      "output_hex": "",
+      "visible_fixture_ids": [],
+      "output_bytes": 0,
+      "whole_output_byte_estimate": 0,
+      "exceeds_whole_output_estimate": false
+    },
+    {
+      "case": "oversized_first",
+      "method": "continue",
+      "output": "KEEP-A\nKEEP-B\n",
+      "output_hex": "4b4545502d410a4b4545502d420a",
+      "visible_fixture_ids": [
+        "a",
+        "b"
+      ],
+      "output_bytes": 14,
+      "whole_output_byte_estimate": 4,
+      "exceeds_whole_output_estimate": false
+    },
+    {
+      "case": "oversized_middle",
+      "method": "stop",
+      "output": "KEEP-A\n",
+      "output_hex": "4b4545502d410a",
+      "visible_fixture_ids": [
+        "a"
+      ],
+      "output_bytes": 7,
+      "whole_output_byte_estimate": 2,
+      "exceeds_whole_output_estimate": false
+    },
+    {
+      "case": "oversized_middle",
+      "method": "continue",
+      "output": "KEEP-A\nKEEP-B\n",
+      "output_hex": "4b4545502d410a4b4545502d420a",
+      "visible_fixture_ids": [
+        "a",
+        "b"
+      ],
+      "output_bytes": 14,
+      "whole_output_byte_estimate": 4,
+      "exceeds_whole_output_estimate": false
+    },
+    {
+      "case": "oversized_last",
+      "method": "stop",
+      "output": "KEEP-A\nKEEP-B\n",
+      "output_hex": "4b4545502d410a4b4545502d420a",
+      "visible_fixture_ids": [
+        "a",
+        "b"
+      ],
+      "output_bytes": 14,
+      "whole_output_byte_estimate": 4,
+      "exceeds_whole_output_estimate": false
+    },
+    {
+      "case": "oversized_last",
+      "method": "continue",
+      "output": "KEEP-A\nKEEP-B\n",
+      "output_hex": "4b4545502d410a4b4545502d420a",
+      "visible_fixture_ids": [
+        "a",
+        "b"
+      ],
+      "output_bytes": 14,
+      "whole_output_byte_estimate": 4,
+      "exceeds_whole_output_estimate": false
+    },
+    {
+      "case": "ordinary_twin",
+      "method": "stop",
+      "output": "KEEP-A\nKEEP-B\n",
+      "output_hex": "4b4545502d410a4b4545502d420a",
+      "visible_fixture_ids": [
+        "a",
+        "b"
+      ],
+      "output_bytes": 14,
+      "whole_output_byte_estimate": 4,
+      "exceeds_whole_output_estimate": false
+    },
+    {
+      "case": "ordinary_twin",
+      "method": "continue",
+      "output": "KEEP-A\nKEEP-B\n",
+      "output_hex": "4b4545502d410a4b4545502d420a",
+      "visible_fixture_ids": [
+        "a",
+        "b"
+      ],
+      "output_bytes": 14,
+      "whole_output_byte_estimate": 4,
+      "exceeds_whole_output_estimate": false
+    },
+    {
+      "case": "exact_fill",
+      "method": "stop",
+      "output": "KEEP-A\nKEEP-B\n",
+      "output_hex": "4b4545502d410a4b4545502d420a",
+      "visible_fixture_ids": [
+        "a",
+        "b"
+      ],
+      "output_bytes": 14,
+      "whole_output_byte_estimate": 4,
+      "exceeds_whole_output_estimate": false
+    },
+    {
+      "case": "exact_fill",
+      "method": "continue",
+      "output": "KEEP-A\nKEEP-B\n",
+      "output_hex": "4b4545502d410a4b4545502d420a",
+      "visible_fixture_ids": [
+        "a",
+        "b"
+      ],
+      "output_bytes": 14,
+      "whole_output_byte_estimate": 4,
+      "exceeds_whole_output_estimate": false
+    },
+    {
+      "case": "no_remaining_room",
+      "method": "stop",
+      "output": "KEEP-A\n",
+      "output_hex": "4b4545502d410a",
+      "visible_fixture_ids": [
+        "a"
+      ],
+      "output_bytes": 7,
+      "whole_output_byte_estimate": 2,
+      "exceeds_whole_output_estimate": false
+    },
+    {
+      "case": "no_remaining_room",
+      "method": "continue",
+      "output": "KEEP-A\n",
+      "output_hex": "4b4545502d410a",
+      "visible_fixture_ids": [
+        "a"
+      ],
+      "output_bytes": 7,
+      "whole_output_byte_estimate": 2,
+      "exceeds_whole_output_estimate": false
+    },
+    {
+      "case": "all_oversized",
+      "method": "stop",
+      "output": "",
+      "output_hex": "",
+      "visible_fixture_ids": [],
+      "output_bytes": 0,
+      "whole_output_byte_estimate": 0,
+      "exceeds_whole_output_estimate": false
+    },
+    {
+      "case": "all_oversized",
+      "method": "continue",
+      "output": "",
+      "output_hex": "",
+      "visible_fixture_ids": [],
+      "output_bytes": 0,
+      "whole_output_byte_estimate": 0,
+      "exceeds_whole_output_estimate": false
+    },
+    {
+      "case": "empty",
+      "method": "stop",
+      "output": "",
+      "output_hex": "",
+      "visible_fixture_ids": [],
+      "output_bytes": 0,
+      "whole_output_byte_estimate": 0,
+      "exceeds_whole_output_estimate": false
+    },
+    {
+      "case": "empty",
+      "method": "continue",
+      "output": "",
+      "output_hex": "",
+      "visible_fixture_ids": [],
+      "output_bytes": 0,
+      "whole_output_byte_estimate": 0,
+      "exceeds_whole_output_estimate": false
+    },
+    {
+      "case": "header_consumes_room",
+      "method": "stop",
+      "output": "HHHHHHHHHHHHHHHH\n",
+      "output_hex": "484848484848484848484848484848480a",
+      "visible_fixture_ids": [],
+      "output_bytes": 17,
+      "whole_output_byte_estimate": 5,
+      "exceeds_whole_output_estimate": false
+    },
+    {
+      "case": "header_consumes_room",
+      "method": "continue",
+      "output": "HHHHHHHHHHHHHHHH\nKEEP-A\n",
+      "output_hex": "484848484848484848484848484848480a4b4545502d410a",
+      "visible_fixture_ids": [
+        "a"
+      ],
+      "output_bytes": 24,
+      "whole_output_byte_estimate": 6,
+      "exceeds_whole_output_estimate": false
+    },
+    {
+      "case": "footer_is_preserved",
+      "method": "stop",
+      "output": "END",
+      "output_hex": "454e44",
+      "visible_fixture_ids": [],
+      "output_bytes": 3,
+      "whole_output_byte_estimate": 1,
+      "exceeds_whole_output_estimate": false
+    },
+    {
+      "case": "footer_is_preserved",
+      "method": "continue",
+      "output": "KEEP-A\nKEEP-B\nEND",
+      "output_hex": "4b4545502d410a4b4545502d420a454e44",
+      "visible_fixture_ids": [
+        "a",
+        "b"
+      ],
+      "output_bytes": 17,
+      "whole_output_byte_estimate": 5,
+      "exceeds_whole_output_estimate": false
+    },
+    {
+      "case": "oversized_header",
+      "method": "stop",
+      "output": "HHHHHHHHHHHHHHHH\n",
+      "output_hex": "484848484848484848484848484848480a",
+      "visible_fixture_ids": [],
+      "output_bytes": 17,
+      "whole_output_byte_estimate": 5,
+      "exceeds_whole_output_estimate": true
+    },
+    {
+      "case": "oversized_header",
+      "method": "continue",
+      "output": "HHHHHHHHHHHHHHHH\n",
+      "output_hex": "484848484848484848484848484848480a",
+      "visible_fixture_ids": [],
+      "output_bytes": 17,
+      "whole_output_byte_estimate": 5,
+      "exceeds_whole_output_estimate": true
+    },
+    {
+      "case": "newline_estimate_limit",
+      "method": "stop",
+      "output": "ABCD\nEFGH\n",
+      "output_hex": "414243440a454647480a",
+      "visible_fixture_ids": [
+        "a",
+        "b"
+      ],
+      "output_bytes": 10,
+      "whole_output_byte_estimate": 3,
+      "exceeds_whole_output_estimate": true
+    },
+    {
+      "case": "newline_estimate_limit",
+      "method": "continue",
+      "output": "ABCD\nEFGH\n",
+      "output_hex": "414243440a454647480a",
+      "visible_fixture_ids": [
+        "a",
+        "b"
+      ],
+      "output_bytes": 10,
+      "whole_output_byte_estimate": 3,
+      "exceeds_whole_output_estimate": true
+    },
+    {
+      "case": "empty_record_limit",
+      "method": "stop",
+      "output": "\n\n\n\n\n",
+      "output_hex": "0a0a0a0a0a",
+      "visible_fixture_ids": [],
+      "output_bytes": 5,
+      "whole_output_byte_estimate": 2,
+      "exceeds_whole_output_estimate": true
+    },
+    {
+      "case": "empty_record_limit",
+      "method": "continue",
+      "output": "\n\n\n\n\n",
+      "output_hex": "0a0a0a0a0a",
+      "visible_fixture_ids": [],
+      "output_bytes": 5,
+      "whole_output_byte_estimate": 2,
+      "exceeds_whole_output_estimate": true
+    },
+    {
+      "case": "unicode_cost",
+      "method": "stop",
+      "output": "",
+      "output_hex": "",
+      "visible_fixture_ids": [],
+      "output_bytes": 0,
+      "whole_output_byte_estimate": 0,
+      "exceeds_whole_output_estimate": false
+    },
+    {
+      "case": "unicode_cost",
+      "method": "continue",
+      "output": "猫\n🙂\n",
+      "output_hex": "e78cab0af09f99820a",
+      "visible_fixture_ids": [
+        "a",
+        "b"
+      ],
+      "output_bytes": 9,
+      "whole_output_byte_estimate": 3,
+      "exceeds_whole_output_estimate": false
+    },
+    {
+      "case": "default_template",
+      "method": "stop",
+      "output": "### Relevant Agent Memories:\n",
+      "output_hex": "2323232052656c6576616e74204167656e74204d656d6f726965733a0a",
+      "visible_fixture_ids": [],
+      "output_bytes": 29,
+      "whole_output_byte_estimate": 8,
+      "exceeds_whole_output_estimate": false
+    },
+    {
+      "case": "default_template",
+      "method": "continue",
+      "output": "### Relevant Agent Memories:\n- [fact] KEEP-A (score: 0.50)\n- [fact] KEEP-B (score: 0.50)\n",
+      "output_hex": "2323232052656c6576616e74204167656e74204d656d6f726965733a0a2d205b666163745d204b4545502d41202873636f72653a20302e3530290a2d205b666163745d204b4545502d42202873636f72653a20302e3530290a",
+      "visible_fixture_ids": [
+        "a",
+        "b"
+      ],
+      "output_bytes": 89,
+      "whole_output_byte_estimate": 23,
+      "exceeds_whole_output_estimate": false
+    }
+  ]
+}
